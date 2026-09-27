@@ -1,4 +1,6 @@
 import RequirementProposals from "@/Components/Shared/RequirementsProposals";
+import { getProposalById } from "@/lib/actions/getProposal";
+
 import { Card, Chip, Separator, Table } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +10,11 @@ import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { IoMdDownload } from "react-icons/io";
 import { IoCheckmarkDone } from "react-icons/io5";
 
-const page = ({ params }) => {
+const page = async ({ params }) => {
+  const { id } = await params;
+  console.log("Proposal ID:", id);
+  const data = await getProposalById(id);
+  console.log("Proposal Data:", data);
   return (
     <div className="w-1/2 mx-auto py-2">
       <div>
@@ -54,13 +60,13 @@ const page = ({ params }) => {
                   Project Proposal
                 </Chip>
                 <p className="text-sm font-semibold text-gray-500">
-                  Reference: BIS-245
+                  Reference: {data?._id.slice(0, 8) || "N/A"}...
                 </p>
                 <p className="text-sm font-semibold text-gray-500">
-                  Date: 2023-10-10
+                  Date: {data?.proposalDate}
                 </p>
                 <p className="text-sm font-semibold text-gray-500">
-                  Valid till: 2023-10-31
+                  Valid : {data?.proposalValidityWindow}
                 </p>
               </div>
             </div>
@@ -73,9 +79,11 @@ const page = ({ params }) => {
             >
               <div className="flex justify-between items-center gap-3 p-3">
                 <div>
-                  <h3 className="text-lg font-semibold">Ashutosh Tanchangya</h3>
+                  <h3 className="text-lg font-semibold">
+                    {data?.clientContactName}
+                  </h3>
                   <p className="text-sm font-medium text-gray-300">
-                    Apex Horizon Industy Ltd.
+                    {data?.companyName}
                   </p>
                 </div>
                 <Separator orientation="vertical" className="" />
@@ -84,7 +92,7 @@ const page = ({ params }) => {
                     Solution Package
                   </p>
                   <p className="text-sm font-medium text-green-300">
-                    Web Application and Development
+                    {data?.primaryDomain}
                   </p>
                 </div>
               </div>
@@ -97,14 +105,12 @@ const page = ({ params }) => {
             </p>
             <div>
               <Card className="w-full" variant="default">
-                <div className="flex items-center gap-2">
-                  <IoCheckmarkDone color="green" />
-                  <p className="text-sm font-medium text-gray-500">task1</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <IoCheckmarkDone color="green" />
-                  <p className="text-sm font-medium text-gray-500">task2</p>
-                </div>
+                {data.coreDeliverables.map((deliverable, index) => (
+                  <div key={index} className="flex items-center gap-2 p-3">
+                    <IoCheckmarkDone className="text-green-600" />
+                    <p className="text-gray-700">{deliverable}</p>
+                  </div>
+                ))}
               </Card>
             </div>
           </div>
@@ -122,21 +128,27 @@ const page = ({ params }) => {
                   >
                     <Table.Header>
                       <Table.Column isRowHeader>Service Item</Table.Column>
-                      <Table.Column>Scope</Table.Column>
+
                       <Table.Column>Amount</Table.Column>
                     </Table.Header>
                     <Table.Body>
                       <Table.Row>
-                        <Table.Cell>Kate Moore</Table.Cell>
-                        <Table.Cell>CEO</Table.Cell>
-                        <Table.Cell>Active</Table.Cell>
+                        <Table.Cell>{data.planOrientation}</Table.Cell>
+                        <Table.Cell>{data.planPrice}</Table.Cell>
                       </Table.Row>
+                      {data.additionalServices.map((service, index) => (
+                        <Table.Row key={index}>
+                          <Table.Cell>{service.name}</Table.Cell>
+                          <Table.Cell>{service.price}</Table.Cell>
+                        </Table.Row>
+                      ))}
                     </Table.Body>
                   </Table.Content>
                 </Table.ScrollContainer>
               </Table>
               <div className="flex justify-end items-center gap-4 mt-3 font-semibold text-gray-500">
-                Subtotal: <p className="text-green-700">$0.00</p>
+                Subtotal:{" "}
+                <p className="text-green-700">${data.totalPrice.toFixed(2)}</p>
               </div>
             </div>
           </div>

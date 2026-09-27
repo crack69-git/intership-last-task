@@ -1,7 +1,11 @@
+import { getProposal } from "@/lib/actions/getProposal";
 import { Button, Table } from "@heroui/react";
+import Link from "next/link";
 import React from "react";
 
-const page = () => {
+const page = async () => {
+  const data = await getProposal();
+  console.log("Fetched Proposals:", data);
   return (
     <div className="w-11/12 mx-auto py-5">
       <p className="text-lg font-semibold mb-3">View Proposals</p>
@@ -16,21 +20,33 @@ const page = () => {
               <Table.Column>Action</Table.Column>
             </Table.Header>
             <Table.Body>
-              <Table.Row>
-                <Table.Cell>Kate Moore</Table.Cell>
-                <Table.Cell>CEO</Table.Cell>
-                <Table.Cell>Active</Table.Cell>
-                <Table.Cell>Active</Table.Cell>
-                <Table.Cell>
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    className="rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white font-semibold"
-                  >
-                    Inspect
-                  </Button>
-                </Table.Cell>
-              </Table.Row>
+              {data.length > 0 ? (
+                data.map((proposal) => (
+                  <Table.Row key={proposal._id}>
+                    <Table.Cell>{proposal._id}</Table.Cell>
+                    <Table.Cell>{proposal.clientContactName}</Table.Cell>
+                    <Table.Cell>{proposal.primaryDomain}</Table.Cell>
+                    <Table.Cell>{proposal.proposalDate}</Table.Cell>
+                    <Table.Cell>
+                      <Link href={`/view-proposal/${proposal._id}`}>
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          className="rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white font-semibold"
+                        >
+                          Inspect
+                        </Button>
+                      </Link>
+                    </Table.Cell>
+                  </Table.Row>
+                ))
+              ) : (
+                <Table.Row>
+                  <Table.Cell colSpan={5} className="text-center">
+                    No proposals found.
+                  </Table.Cell>
+                </Table.Row>
+              )}
             </Table.Body>
           </Table.Content>
         </Table.ScrollContainer>

@@ -9,9 +9,9 @@ import { RiAiGenerate3dLine } from "react-icons/ri";
 const NavbarSection = () => {
   return (
     <div className="border-b-2 border-gray-200">
-      <div className="flex justify-between items-center w-11/12 mx-auto py-4">
-        <div className="flex items-center gap-10">
-          <div className="flex items-center gap-2">
+      <div className="flex max-sm:flex-col max-sm:gap-2 justify-between items-center w-11/12 mx-auto py-4">
+        <div className="flex max-sm:flex-col max-sm:gap-2 items-center gap-10">
+          <div className="flex  items-center gap-2">
             <Image src="/logo.png" alt="Logo" width={50} height={50} />
             <div>
               <h4 className="font-bold text-lg">Biswas IT Firm</h4>

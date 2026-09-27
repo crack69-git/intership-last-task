@@ -60,7 +60,7 @@ export default function RequirementProposals() {
             </div>
             <Chip
               variant="flat"
-              classNames={{
+              className={{
                 base: "bg-blue-50 border border-blue-200/60 text-blue-700 font-semibold text-xs px-3 py-1 rounded-md",
               }}
             >
