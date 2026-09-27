@@ -334,13 +334,13 @@ const FormSection = () => {
                     <CheckboxGroup name="AdditionalServices">
                       <Checkbox
                         value="Additional Polishing & Revisions Round"
-                        className="border p-4 rounded-lg border-gray-200"
+                        className="border p-4 rounded-lg border-gray-200 "
                       >
                         <Checkbox.Content>
                           <Checkbox.Control>
                             <Checkbox.Indicator />
                           </Checkbox.Control>
-                          <div className="flex justify-between items-center w-full">
+                          <div className="flex justify-between items-start w-full">
                             <div className="flex flex-col gap-1">
                               <p className="font-medium text-lg">
                                 Additional Polishing & Revisions Round
@@ -350,7 +350,7 @@ const FormSection = () => {
                                 dedicated lead designer.
                               </p>
                             </div>
-                            <p className="font-bold text-lg">+$100</p>
+                            <div className="font-bold text-lg">+$100</div>
                           </div>
                         </Checkbox.Content>
                       </Checkbox>
@@ -563,8 +563,14 @@ const FormSection = () => {
               </div>
 
               <div className="flex gap-2">
-                <Button type="submit">Submit</Button>
-                <Button type="reset" variant="secondary">
+                <Button type="submit" className="bg-emerald-800 rounded-lg">
+                  Submit
+                </Button>
+                <Button
+                  type="reset"
+                  variant="secondary"
+                  className="rounded-lg text-emerald-800"
+                >
                   Reset
                 </Button>
               </div>

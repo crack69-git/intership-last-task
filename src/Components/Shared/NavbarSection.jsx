@@ -2,6 +2,8 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { HiOutlineViewGrid } from "react-icons/hi";
+import { IoMdAdd } from "react-icons/io";
 import { RiAiGenerate3dLine } from "react-icons/ri";
 
 const NavbarSection = () => {
@@ -19,14 +21,16 @@ const NavbarSection = () => {
           <div className="flex items-center gap-8">
             <Link
               href="/"
-              className="flex items-center gap-2 font-semibold text-gray-700 hover:underline underline-offset-2"
+              className="flex items-center gap-1 font-semibold text-gray-700 hover:underline underline-offset-2"
             >
-              Home
+              <IoMdAdd />
+              Add Proposal
             </Link>
             <Link
-              href="/about"
-              className="flex items-center gap-2 font-semibold text-gray-700 hover:underline underline-offset-2"
+              href="/view-proposal"
+              className="flex items-center gap-1 font-semibold text-gray-700 hover:underline underline-offset-2"
             >
+              <HiOutlineViewGrid />
               View Proposals
             </Link>
           </div>
