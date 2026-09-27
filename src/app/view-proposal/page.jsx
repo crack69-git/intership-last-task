@@ -23,7 +23,14 @@ const page = async () => {
               {data.length > 0 ? (
                 data.map((proposal) => (
                   <Table.Row key={proposal._id}>
-                    <Table.Cell>{proposal._id}</Table.Cell>
+                    <Table.Cell>
+                      <Link
+                        href={`/view-proposal/${proposal._id}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        {proposal._id}
+                      </Link>
+                    </Table.Cell>
                     <Table.Cell>{proposal.clientContactName}</Table.Cell>
                     <Table.Cell>{proposal.primaryDomain}</Table.Cell>
                     <Table.Cell>{proposal.proposalDate}</Table.Cell>

@@ -151,7 +151,7 @@ const FormSection = () => {
             </div>
             <Separator className="my-4" />
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid max-sm:grid-cols-1 grid-cols-2 gap-4">
               <TextField
                 defaultValue="ashu"
                 name="clientContactName"
@@ -252,7 +252,7 @@ const FormSection = () => {
             </div>
             <Separator className="my-4" />
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid max-sm:grid-cols-1 grid-cols-3 gap-4">
               <Select
                 className="w-full col-span-3"
                 placeholder="Select one"
@@ -283,7 +283,7 @@ const FormSection = () => {
                   defaultValue="starter"
                   name="plan-orientation"
                   orientation="horizontal"
-                  className="grid grid-cols-3 gap-4"
+                  className="grid max-sm:grid-cols-1 grid-cols-3 gap-4"
                   onChange={(val) => {
                     if (val === "starter") setSelectedPlanPrice(300);
                     if (val === "professional") setSelectedPlanPrice(500);
@@ -312,7 +312,7 @@ const FormSection = () => {
                     value="professional"
                     className="relative border p-4 rounded-lg border-gray-200"
                   >
-                    <Chip className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <Chip className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-100 border border-blue-300 text-blue-800 font-semibold">
                       Most Popular
                     </Chip>
                     <Radio.Content>
@@ -468,7 +468,7 @@ const FormSection = () => {
               <RadioGroup
                 defaultValue="Standard Delivery"
                 name="ProjectDeliverySchedule"
-                className="grid grid-cols-3 gap-4"
+                className="grid max-sm:grid-cols-1 grid-cols-3 gap-4"
               >
                 <Radio
                   value="Express Delivery"

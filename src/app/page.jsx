@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-1/2 mx-auto">
+      <div className="max-sm:w-11/12 w-1/2 mx-auto">
         <FormSection />
       </div>
     </div>
